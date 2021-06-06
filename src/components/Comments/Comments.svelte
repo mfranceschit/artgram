@@ -1,24 +1,37 @@
 <script>
   export let comments = [];
+
+  const addComment = (event) => {
+    const message = event.target.text.value;
+    if (message.length > 3) {
+      comments = [
+        ...comments,
+        {
+          name: "Marco",
+          text: message,
+        },
+      ];
+    }
+    event.target.text.value = "";
+  };
 </script>
 
 <div class="Comments">
   <div class="Comments-content">
-    <div class="Comments-users">
-      {#each comments as comment}
-        <div>
-          <h3>John</h3>
-          <span>Nothing good.</span>
-        </div>
-      {/each}
-    </div>
+    {#each comments as comment}
+      <div class="Comments-users">
+        <h3>{comment.name}</h3>
+        <span>{comment.text}</span>
+      </div>
+    {/each}
     <div class="Comments-add">
-      <form>
+      <form on:submit|preventDefault={addComment}>
         <input
           type="text"
           class="Comments=input"
           placeholder="Add comment..."
-          id="add-comment"
+          name="text"
+          id="text"
         />
         <button type="submit">Post</button>
       </form>

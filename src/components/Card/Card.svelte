@@ -1,5 +1,9 @@
 <script>
+  import { blur } from "svelte/transition";
+
   import Comments from "../Comments";
+  import Modal from "../Modal";
+  import Share from "../Share";
 
   export let country;
   export let primaryImage;
@@ -8,9 +12,22 @@
   export let title;
   export let department;
   export let comments = [];
+
+  let openModal = false;
+
+  const handleModal = () => {
+    openModal = !openModal;
+  };
 </script>
 
 <div class="Card">
+  {#if openModal}
+    <div transition:blur>
+      <Modal>
+        <Share on:click={handleModal} />
+      </Modal>
+    </div>
+  {/if}
   <div class="Card-container">
     <div class="Card-header">
       <div class="Card-user">
@@ -32,7 +49,7 @@
     <div class="Card-icons">
       <div class="Card-icons-left">
         <i class="fas fa-heart" />
-        <i class="fas fa-paper-plane" />
+        <i class="fas fa-paper-plane" on:click={handleModal} />
       </div>
       <div class="Card-icons-right">
         <i class="fas fa-bookmark" />

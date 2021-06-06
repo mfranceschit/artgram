@@ -31,7 +31,6 @@
       .map((data) => data.value);
 
     posts = results;
-    console.log(posts);
   });
 </script>
 
