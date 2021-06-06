@@ -5,10 +5,10 @@
       <div class="Header-navigation">
         <ul>
           <li>
-            <i class="fa-solid fa-gun" />
+            <i class="fas fa-heart" />
           </li>
           <li>
-            <i class="fa-solid fa-user-alt" />
+            <i class="fas fa-user-alt" />
           </li>
         </ul>
       </div>

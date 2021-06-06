@@ -1,10 +1,16 @@
 <script>
+  import App from "../../containers/App.svelte";
   import Card from "../Card";
+  export let posts = [];
 </script>
 
 <div class="TimeLine">
   <div class="TimeLine-container">
-    <Card />
+    {#each posts as post}
+      <Card {...post} />
+    {:else}
+      <p>Loading</p>
+    {/each}
   </div>
 </div>
 
