@@ -1,6 +1,7 @@
 <script>
   import { blur } from "svelte/transition";
 
+  import { likeCount } from "../../store/store";
   import Comments from "../Comments";
   import Modal from "../Modal";
   import Share from "../Share";
@@ -14,9 +15,20 @@
   export let comments = [];
 
   let openModal = false;
+  let like = false;
+  let bookmark = false;
 
   const handleModal = () => {
     openModal = !openModal;
+  };
+
+  const handleLike = () => {
+    like = !like;
+    if (like) {
+      likeCount.update((n) => n + 1);
+    } else {
+      likeCount.update((n) => n - 1);
+    }
   };
 </script>
 
@@ -42,17 +54,25 @@
       </div>
     </div>
     <div class="Card-photo">
-      <figure>
+      <figure on:dblclick={handleLike}>
         <img src={primaryImage} alt={title} />
       </figure>
     </div>
     <div class="Card-icons">
       <div class="Card-icons-left">
-        <i class="fas fa-heart" />
+        <i
+          class="fas fa-heart"
+          class:active-like={like}
+          on:click={handleLike}
+        />
         <i class="fas fa-paper-plane" on:click={handleModal} />
       </div>
       <div class="Card-icons-right">
-        <i class="fas fa-bookmark" />
+        <i
+          class="fas fa-bookmark"
+          class:active-bookmark={bookmark}
+          on:click={() => (bookmark = !bookmark)}
+        />
       </div>
     </div>
     <div class="Card-description">
