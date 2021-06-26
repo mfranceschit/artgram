@@ -5,7 +5,7 @@
   </div>
   <div class="Share-content">
     <a
-      href="https://www.facebook.com/sharer/sharer.php?&u=https://artgram.com"
+      href="https://www.facebook.com/sharer/sharer.php?&u=https://sveltegram.com"
       target="_blank"
     >
       Share on Facebook

@@ -1,7 +1,8 @@
 <script>
-  import App from "../../containers/App.svelte";
   import Card from "../Card";
   export let posts = [];
+
+  console.log(posts);
 </script>
 
 <div class="TimeLine">

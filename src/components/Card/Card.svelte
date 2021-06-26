@@ -6,12 +6,10 @@
   import Modal from "../Modal";
   import Share from "../Share";
 
-  export let country;
-  export let primaryImage;
-  export let primaryImageSmall;
-  export let creditLine;
-  export let title;
-  export let department;
+  export let location;
+  export let image;
+  export let name;
+  export let status;
   export let comments = [];
 
   let openModal = false;
@@ -43,10 +41,10 @@
   <div class="Card-container">
     <div class="Card-header">
       <div class="Card-user">
-        <img src={primaryImageSmall} alt="Most wanted" />
+        <img src={image} alt="Most wanted" />
         <h2>
-          {department}
-          <span>{country}</span>
+          {name}
+          <span>{location.name}</span>
         </h2>
       </div>
       <div class="Card-settings">
@@ -55,7 +53,7 @@
     </div>
     <div class="Card-photo">
       <figure on:dblclick={handleLike}>
-        <img src={primaryImage} alt={title} />
+        <img src={image} alt={name} />
       </figure>
     </div>
     <div class="Card-icons">
@@ -76,8 +74,8 @@
       </div>
     </div>
     <div class="Card-description">
-      <h3>{title}</h3>
-      <span>{creditLine}</span>
+      <h3>{name}</h3>
+      <span>{status}</span>
     </div>
     <Comments {comments} />
   </div>

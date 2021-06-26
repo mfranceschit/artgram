@@ -6,31 +6,18 @@
   import Sidebar from "../components/Sidebar";
   import TimeLine from "../components/TimeLine";
 
-  const objects = [100, 102, 104, 106, 108, 110, 112, 114, 116, 400];
-  const BASE_API =
-    "https://collectionapi.metmuseum.org/public/collection/v1/objects/";
+  const BASE_API = "https://rickandmortyapi.com/api/character";
   let posts = [];
 
   onMount(async () => {
-    const museumRequest = objects.map(
-      (objectId) =>
-        new Promise(async (resolve, reject) => {
-          const response = await fetch(`${BASE_API}${objectId}`);
-
-          if (response.error) {
-            reject(response.error);
-          }
-
-          const data = await response.json();
-          resolve(data);
-        })
-    );
-    const museumData = await Promise.allSettled(museumRequest);
-    const results = museumData
-      .filter((rawData) => rawData.status === "fulfilled")
-      .map((data) => data.value);
-
-    posts = results;
+    try {
+      const response = await fetch(`${BASE_API}`);
+      const data = await response.json();
+      posts = data.results;
+      console.log(posts);
+    } catch (error) {
+      // TODO: Log error
+    }
   });
 </script>
 
