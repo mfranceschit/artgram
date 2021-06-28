@@ -21,7 +21,6 @@
   });
 </script>
 
-<Header />
 <Main>
   <TimeLine {posts} />
   <Sidebar />
