@@ -1,12 +1,19 @@
 <script>
+  import { goto } from "@sapper/app";
   import { likeCount } from "../../store/store";
   export let segment;
+
+  const navigateToHome = async () => {
+    await goto("/");
+  };
 </script>
 
 <div class="Header">
   <div class="Header-container">
     <div class="Header-content">
-      <div class="Header-logo" />
+      <div class="Header-logo">
+        <h1 on:click={navigateToHome}>Sveltegram</h1>
+      </div>
       <div class="Header-navigation">
         <ul>
           <li>
@@ -16,6 +23,7 @@
           <li>
             <a
               aria-current={segment === "profile" ? "page" : undefined}
+              rel="prefetch"
               href="profile"
             >
               <i class="fas fa-user-alt" />
