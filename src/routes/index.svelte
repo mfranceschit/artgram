@@ -1,25 +1,27 @@
-<script>
-  import { onMount } from "svelte";
+<script context="module">
+  const BASE_API = "https://rickandmortyapi.com/api/character";
 
-  import Header from "../components/Header";
+  export async function preload() {
+    let data = {};
+
+    const response = await this.fetch(`${BASE_API}`);
+    data = await response.json();
+
+    return { posts: data.results };
+  }
+</script>
+
+<script>
   import Main from "../components/Main/Main";
   import Sidebar from "../components/Sidebar";
   import TimeLine from "../components/TimeLine";
 
-  const BASE_API = "https://rickandmortyapi.com/api/character";
-  let posts = [];
-
-  onMount(async () => {
-    try {
-      const response = await fetch(`${BASE_API}`);
-      const data = await response.json();
-      posts = data.results;
-      console.log(posts);
-    } catch (error) {
-      // TODO: Log error
-    }
-  });
+  export let posts = [];
 </script>
+
+<svelte:head>
+  <title>Sveltegram</title>
+</svelte:head>
 
 <Main>
   <TimeLine {posts} />
